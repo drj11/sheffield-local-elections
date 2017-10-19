@@ -19,9 +19,15 @@ def as_wards(inp):
             continue
         ward = row[0]
 
+def ward_poll(row):
+    if row[1] == "candidate":
+        return (row[0], row[1], int(row[4]))
+    else:
+        return (row[0], row[1])
+
 def wards(inp, outf):
     out = csv.writer(outf)
-    for row in as_wards(inp):
+    for row in sorted(as_wards(inp), key=ward_poll):
         out.writerow(row)
 
 def candidate(row):
