@@ -19,8 +19,8 @@ def as_wards(inp):
             continue
         ward = row[0]
 
-def wards(inp):
-    out = csv.writer(sys.stdout)
+def wards(inp, outf):
+    out = csv.writer(outf)
     for row in as_wards(inp):
         out.writerow(row)
 
@@ -35,8 +35,9 @@ def candidate(row):
     
 
 def main():
-    with open("source/2016local.csv") as f:
-        wards(f)
+    with open("source/2016local.csv") as f,\
+        open("out/2016local.csv", 'w') as out:
+        wards(f, out)
 
 
 if __name__ == '__main__':
